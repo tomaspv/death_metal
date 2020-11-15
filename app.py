@@ -229,11 +229,14 @@ def main():
     #    st.write(df_data.shape)
         
         
-    sentence = st.text_input('Escribi la letra de la cancion y dale enter amiguero!!!:') 
+    sentence = st.text_input('Escribi la letra de la cancion y dale enter amiguero!!!:')
 
-    if sentence:
-        st.write(consultar_si_es_death_metal(my_model,sentence))
     
+        
+    if sentence:
+        df_texto = pd.DataFrame([sentence])
+        #st.write(df_texto[0])
+        st.write(consultar_si_es_death_metal(my_model,df_texto[0]))
     
     
 
