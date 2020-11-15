@@ -4,5 +4,4 @@ plotly-express==0.4.1
 seaborn==0.9.0
 folium==0.10.0
 spacy
-re
 nltk
