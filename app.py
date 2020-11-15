@@ -39,22 +39,22 @@ def separar_canciones(df):
 
 @st.cache(persist=True, suppress_st_warning=True)
 def load_data():
-    cannibal_corpse = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/CANNIBAL CORPSE lyrics.txt', "r")
-    celtic_frost = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/CELTIC FROST lyrics.txt', "r")
-    death = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/DEATH lyrics.txt', "r")
-    jesus_martyr = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/JESUS MARTYR lyrics.txt', "r")
-    master = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/MASTER lyrics.txt', "r")
-    morbid_angel = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/MORBID ANGEL lyrics.txt', "r")
-    possessed = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/POSSESSED lyrics.txt', "r")
-    sodom = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/SODOM lyrics.txt', "r")
-    venom = open('/Users/tom/Documents/GitHub/death_metal/DATASET/DEATH METAL/VENOM lyrics.txt', "r")
+    cannibal_corpse = open('DATASET/DEATH METAL/CANNIBAL CORPSE lyrics.txt', "r")
+    celtic_frost = open('DATASET/DEATH METAL/CELTIC FROST lyrics.txt', "r")
+    death = open('DATASET/DEATH METAL/DEATH lyrics.txt', "r")
+    jesus_martyr = open('DATASET/DEATH METAL/JESUS MARTYR lyrics.txt', "r")
+    master = open('DATASET/DEATH METAL/MASTER lyrics.txt', "r")
+    morbid_angel = open('DATASET/DEATH METAL/MORBID ANGEL lyrics.txt', "r")
+    possessed = open('DATASET/DEATH METAL/POSSESSED lyrics.txt', "r")
+    sodom = open('DATASET/DEATH METAL/SODOM lyrics.txt', "r")
+    venom = open('DATASET/DEATH METAL/VENOM lyrics.txt', "r")
     
-    avantasia = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/AVANTASIA lyrics.txt', "r")
-    hammerfall = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/HAMMERFALL lyrics.txt', "r")
-    iron_maiden = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/IRON MAIDEN lyrics.txt', "r")
-    rhapsody = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/RHAPSODY lyrics.txt', "r")
-    slipknot = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/SLIPKNOT lyrics.txt', "r")
-    twisted_sister = open('/Users/tom/Documents/GitHub/death_metal/DATASET/OTRO GENERO/TWISTED SISTER lyrics.txt', "r")
+    avantasia = open('DATASET/OTRO GENERO/AVANTASIA lyrics.txt', "r")
+    hammerfall = open('DATASET/OTRO GENERO/HAMMERFALL lyrics.txt', "r")
+    iron_maiden = open('DATASET/OTRO GENERO/IRON MAIDEN lyrics.txt', "r")
+    rhapsody = open('DATASET/OTRO GENERO/RHAPSODY lyrics.txt', "r")
+    slipknot = open('DATASET/OTRO GENERO/SLIPKNOT lyrics.txt', "r")
+    twisted_sister = open('DATASET/OTRO GENERO/TWISTED SISTER lyrics.txt', "r")
     
     
     #canciones del genero death metal
