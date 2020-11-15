@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# This script serves as the Scipy/Numpy build step of the
+# [**Python Buildpack**](https://github.com/heroku/heroku-buildpack-python) 
+# compiler. 
+# 
+# A [buildpack](http://devcenter.heroku.com/articles/buildpacks) is an 
+# adapter between a Python application and Heroku's runtime.
+#
+# This script is invoked by [`bin/compile`](/).
+
+VENDORED_GIT_NAME="npscipy-binaries"
+VENDORED_GIT_REPO="git://github.com/dbrgn/${VENDORED_GIT_NAME}.git"
+# The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
+VENDORED_BINARIES="npscipy"
+# the location of the bdist of numpy
+VENDORED_NUMPY="numpy-1.7.0"
+# the location of the bdist of scipy
+VENDORED_SCIPY="scipy-0.11.0"
+
+# Syntax sugar.
+source $BIN_DIR/utils
+
+# If numpy or scipy exists within requirements.txt then use binaries.
+if (grep -iq -e "numpy" -e "scipy" requirements.txt) then
+  puts-step "Noticed numpy/scipy. Bootstrapping prebuilt binaries."
+  cd .heroku
+
+  ## check whether this has happened already
+  ## set BLAS/LAPACK/ATLAS
+  if [ -d "vendor/lib/atlas-base" ]; then
+    puts-step "Using cached binaries."
+  else
+    puts-step "Creating/downloading binaries."
+    # Download and extract everything into target vendor directory.
+    git clone ${VENDORED_GIT_REPO} > /dev/null
+    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz > /dev/null
+  fi
+  export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
+  export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
+  export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
+  export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas
+  export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas
+
+  if [ -d "python/lib/python2.7/site-packages/numpy" ]; then
+    puts-step "Using cached numpy."
+  else
+    puts-step "Creating/downloading numpy bdist."
+    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
+  fi
+  
+  if [ -d "python/lib/python2.7/site-packages/scipy" ]; then
+    puts-step "Using cached scipy."
+  else
+    puts-step "Creating/downloading scipy bdist."
+    tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
+  fi
+
+  # Move everything from venv directory to python directory
+  if [ -d "venv" ]; then
+    puts-step "Moving everything from venv directory to python directory..."
+    cp -a venv/* python/
+    rm -r venv
+  fi
+
+  if [ -d ${VENDORED_GIT_NAME} ]; then
+    rm -rf ${VENDORED_GIT_NAME}
+  fi
+  cd ..
+fi
