@@ -13,7 +13,6 @@ import nltk
 nltk.download('stopwords')
 import spacy.cli
 spacy.cli.download("en_core_web_sm")
-import spacy
 import streamlit as st
 
 #hacer una funcion generica para obtener las canciones por separado
