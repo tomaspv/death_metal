@@ -10,9 +10,7 @@ from sklearn.pipeline import Pipeline
 import pandas as pd
 import re
 import nltk
-nltk.download('stopwords')
 import spacy.cli
-spacy.cli.download("en_core_web_sm")
 import streamlit as st
 
 #hacer una funcion generica para obtener las canciones por separado
@@ -139,7 +137,7 @@ def load_data():
 
     return df_metal
 
-@st.cache(persist=True, suppress_st_warning=True)
+
 def model(df_metal):
     # # Spacy + Pipeline
     
