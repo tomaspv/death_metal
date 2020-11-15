@@ -139,7 +139,7 @@ def load_data():
 
     return df_metal
 
-
+@st.cache(persist=True, suppress_st_warning=True)
 def model(df_metal):
     # # Spacy + Pipeline
     
@@ -235,6 +235,8 @@ def main():
 
     if sentence:
         st.write(consultar_si_es_death_metal(my_model,sentence))
+    
+    
     
 
 
