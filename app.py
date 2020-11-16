@@ -228,18 +228,15 @@ def main():
     #    st.write(df_data.head())
     #    st.write(df_data.shape)
         
-        
-    sentence = st.text_input('Escribi la letra de la cancion y dale enter amiguero!!!:')
-
     
-        
-    if sentence:
-        df_texto = pd.DataFrame([sentence])
-        #st.write(df_texto[0])
-        st.write(consultar_si_es_death_metal(my_model,df_texto[0]))
-    
-    
-
+    sentence = st.text_area('Escribi la letra de la cancion en ingles y presiona enter para analizarla!!!:',height=300)
+    df_texto = pd.DataFrame([sentence])
+   
+    if st.button('Analizar Letra'):    
+        if(len(df_texto[0][0])>=400):
+            st.write(consultar_si_es_death_metal(my_model,df_texto[0]))
+        else:
+            st.error("La cancion tiene que tener un minimo de 400 letras, solo ingresaste:" + str(len(df_texto[0][0])))
 
 if __name__ == "__main__":
     main()
