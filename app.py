@@ -209,9 +209,9 @@ def consultar_si_es_death_metal(pipe,letra):
     resultado = pipe.predict(letra)
     
     if(resultado[0]==0):
-        return ("La cancion para el clasificador NO es del genero Death Metal")
+        return ("La cancion para el clasificador NO posee caracteristicas propias del genero Death Metal")
     else:
-        return ("La cancion para el clasificador claramente SI es del genero Death Metal ")
+        return ("La cancion para el clasificador claramente SI posee caracteristicas propias del genero Death Metal ")
     
     
 
