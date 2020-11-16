@@ -229,7 +229,7 @@ def main():
     #    st.write(df_data.shape)
         
     
-    sentence = st.text_area('Escribi la letra de la cancion en ingles y presiona enter para analizarla!!!:',height=300)
+    sentence = st.text_area('Escribi la letra de la cancion en ingles y presiona el boton "Analizar Letra" para obtener el resultado!!!:',height=300)
     df_texto = pd.DataFrame([sentence])
    
     if st.button('Analizar Letra'):    
